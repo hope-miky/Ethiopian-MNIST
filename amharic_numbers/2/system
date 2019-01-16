@@ -1,0 +1,2121 @@
+Help on module os:
+
+NNAAMMEE
+    os - OS routines for NT or Posix depending on what system we're on.
+
+MMOODDUULLEE  RREEFFEERREENNCCEE
+    https://docs.python.org/3.6/library/os
+    
+    The following documentation is automatically generated from the Python
+    source files.  It may be incomplete, incorrect or include features that
+    are considered implementation detail and may vary between Python
+    implementations.  When in doubt, consult the module reference at the
+    location listed above.
+
+DDEESSCCRRIIPPTTIIOONN
+    This exports:
+      - all functions from posix or nt, e.g. unlink, stat, etc.
+      - os.path is either posixpath or ntpath
+      - os.name is either 'posix' or 'nt'
+      - os.curdir is a string representing the current directory (always '.')
+      - os.pardir is a string representing the parent directory (always '..')
+      - os.sep is the (or a most common) pathname separator ('/' or '\\')
+      - os.extsep is the extension separator (always '.')
+      - os.altsep is the alternate pathname separator (None or '/')
+      - os.pathsep is the component separator used in $PATH etc
+      - os.linesep is the line separator in text files ('\r' or '\n' or '\r\n')
+      - os.defpath is the default search path for executables
+      - os.devnull is the file path of the null device ('/dev/null', etc.)
+    
+    Programs that import and use 'os' stand a better chance of being
+    portable between different platforms.  Of course, they must then
+    only use functions that are defined by all platforms (e.g., unlink
+    and opendir), and leave all pathname manipulation to os.path
+    (e.g., split and join).
+
+CCLLAASSSSEESS
+    builtins.Exception(builtins.BaseException)
+        builtins.OSError
+    builtins.object
+        posix.DirEntry
+    builtins.tuple(builtins.object)
+        stat_result
+        statvfs_result
+        terminal_size
+        posix.sched_param
+        posix.times_result
+        posix.uname_result
+        posix.waitid_result
+    
+    class DDiirrEEnnttrryy(builtins.object)
+     |  Methods defined here:
+     |  
+     |  ____ffssppaatthh____(...)
+     |      returns the path for the entry
+     |  
+     |  ____rreepprr____(self, /)
+     |      Return repr(self).
+     |  
+     |  iinnooddee(...)
+     |      return inode of the entry; cached per entry
+     |  
+     |  iiss__ddiirr(...)
+     |      return True if the entry is a directory; cached per entry
+     |  
+     |  iiss__ffiillee(...)
+     |      return True if the entry is a file; cached per entry
+     |  
+     |  iiss__ssyymmlliinnkk(...)
+     |      return True if the entry is a symbolic link; cached per entry
+     |  
+     |  ssttaatt(...)
+     |      return stat_result object for the entry; cached per entry
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data descriptors defined here:
+     |  
+     |  nnaammee
+     |      the entry's base filename, relative to scandir() "path" argument
+     |  
+     |  ppaatthh
+     |      the entry's full path name; equivalent to os.path.join(scandir_path, entry.name)
+    
+    eerrrroorr = class OSError(Exception)
+     |  Base class for I/O related errors.
+     |  
+     |  Method resolution order:
+     |      OSError
+     |      Exception
+     |      BaseException
+     |      object
+     |  
+     |  Methods defined here:
+     |  
+     |  ____iinniitt____(self, /, *args, **kwargs)
+     |      Initialize self.  See help(type(self)) for accurate signature.
+     |  
+     |  ____nneeww____(*args, **kwargs) from builtins.type
+     |      Create and return a new object.  See help(type) for accurate signature.
+     |  
+     |  ____rreedduuccee____(...)
+     |      helper for pickle
+     |  
+     |  ____ssttrr____(self, /)
+     |      Return str(self).
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data descriptors defined here:
+     |  
+     |  cchhaarraacctteerrss__wwrriitttteenn
+     |  
+     |  eerrrrnnoo
+     |      POSIX exception code
+     |  
+     |  ffiilleennaammee
+     |      exception filename
+     |  
+     |  ffiilleennaammee22
+     |      second exception filename
+     |  
+     |  ssttrreerrrroorr
+     |      exception strerror
+     |  
+     |  ----------------------------------------------------------------------
+     |  Methods inherited from BaseException:
+     |  
+     |  ____ddeellaattttrr____(self, name, /)
+     |      Implement delattr(self, name).
+     |  
+     |  ____ggeettaattttrriibbuuttee____(self, name, /)
+     |      Return getattr(self, name).
+     |  
+     |  ____rreepprr____(self, /)
+     |      Return repr(self).
+     |  
+     |  ____sseettaattttrr____(self, name, value, /)
+     |      Implement setattr(self, name, value).
+     |  
+     |  ____sseettssttaattee____(...)
+     |  
+     |  wwiitthh__ttrraacceebbaacckk(...)
+     |      Exception.with_traceback(tb) --
+     |      set self.__traceback__ to tb and return self.
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data descriptors inherited from BaseException:
+     |  
+     |  ____ccaauussee____
+     |      exception cause
+     |  
+     |  ____ccoonntteexxtt____
+     |      exception context
+     |  
+     |  ____ddiicctt____
+     |  
+     |  ____ssuupppprreessss__ccoonntteexxtt____
+     |  
+     |  ____ttrraacceebbaacckk____
+     |  
+     |  aarrggss
+    
+    class sscchheedd__ppaarraamm(builtins.tuple)
+     |  Current has only one field: sched_priority");
+     |  
+     |  sched_priority
+     |    A scheduling parameter.
+     |  
+     |  Method resolution order:
+     |      sched_param
+     |      builtins.tuple
+     |      builtins.object
+     |  
+     |  Methods defined here:
+     |  
+     |  ____nneeww____(*args, **kwargs) from builtins.type
+     |      Create and return a new object.  See help(type) for accurate signature.
+     |  
+     |  ____rreedduuccee____(...)
+     |      helper for pickle
+     |  
+     |  ____rreepprr____(self, /)
+     |      Return repr(self).
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data descriptors defined here:
+     |  
+     |  sscchheedd__pprriioorriittyy
+     |      the scheduling priority
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data and other attributes defined here:
+     |  
+     |  nn__ffiieellddss = 1
+     |  
+     |  nn__sseeqquueennccee__ffiieellddss = 1
+     |  
+     |  nn__uunnnnaammeedd__ffiieellddss = 0
+     |  
+     |  ----------------------------------------------------------------------
+     |  Methods inherited from builtins.tuple:
+     |  
+     |  ____aadddd____(self, value, /)
+     |      Return self+value.
+     |  
+     |  ____ccoonnttaaiinnss____(self, key, /)
+     |      Return key in self.
+     |  
+     |  ____eeqq____(self, value, /)
+     |      Return self==value.
+     |  
+     |  ____ggee____(self, value, /)
+     |      Return self>=value.
+     |  
+     |  ____ggeettaattttrriibbuuttee____(self, name, /)
+     |      Return getattr(self, name).
+     |  
+     |  ____ggeettiitteemm____(self, key, /)
+     |      Return self[key].
+     |  
+     |  ____ggeettnneewwaarrggss____(...)
+     |  
+     |  ____ggtt____(self, value, /)
+     |      Return self>value.
+     |  
+     |  ____hhaasshh____(self, /)
+     |      Return hash(self).
+     |  
+     |  ____iitteerr____(self, /)
+     |      Implement iter(self).
+     |  
+     |  ____llee____(self, value, /)
+     |      Return self<=value.
+     |  
+     |  ____lleenn____(self, /)
+     |      Return len(self).
+     |  
+     |  ____lltt____(self, value, /)
+     |      Return self<value.
+     |  
+     |  ____mmuull____(self, value, /)
+     |      Return self*value.n
+     |  
+     |  ____nnee____(self, value, /)
+     |      Return self!=value.
+     |  
+     |  ____rrmmuull____(self, value, /)
+     |      Return self*value.
+     |  
+     |  ccoouunntt(...)
+     |      T.count(value) -> integer -- return number of occurrences of value
+     |  
+     |  iinnddeexx(...)
+     |      T.index(value, [start, [stop]]) -> integer -- return first index of value.
+     |      Raises ValueError if the value is not present.
+    
+    class ssttaatt__rreessuulltt(builtins.tuple)
+     |  stat_result: Result from stat, fstat, or lstat.
+     |  
+     |  This object may be accessed either as a tuple of
+     |    (mode, ino, dev, nlink, uid, gid, size, atime, mtime, ctime)
+     |  or via the attributes st_mode, st_ino, st_dev, st_nlink, st_uid, and so on.
+     |  
+     |  Posix/windows: If your platform supports st_blksize, st_blocks, st_rdev,
+     |  or st_flags, they are available as attributes only.
+     |  
+     |  See os.stat for more information.
+     |  
+     |  Method resolution order:
+     |      stat_result
+     |      builtins.tuple
+     |      builtins.object
+     |  
+     |  Methods defined here:
+     |  
+     |  ____nneeww____(*args, **kwargs) from builtins.type
+     |      Create and return a new object.  See help(type) for accurate signature.
+     |  
+     |  ____rreedduuccee____(...)
+     |      helper for pickle
+     |  
+     |  ____rreepprr____(self, /)
+     |      Return repr(self).
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data descriptors defined here:
+     |  
+     |  sstt__aattiimmee
+     |      time of last access
+     |  
+     |  sstt__aattiimmee__nnss
+     |      time of last access in nanoseconds
+     |  
+     |  sstt__bbllkkssiizzee
+     |      blocksize for filesystem I/O
+     |  
+     |  sstt__bblloocckkss
+     |      number of blocks allocated
+     |  
+     |  sstt__ccttiimmee
+     |      time of last change
+     |  
+     |  sstt__ccttiimmee__nnss
+     |      time of last change in nanoseconds
+     |  
+     |  sstt__ddeevv
+     |      device
+     |  
+     |  sstt__ggiidd
+     |      group ID of owner
+     |  
+     |  sstt__iinnoo
+     |      inode
+     |  
+     |  sstt__mmooddee
+     |      protection bits
+     |  
+     |  sstt__mmttiimmee
+     |      time of last modification
+     |  
+     |  sstt__mmttiimmee__nnss
+     |      time of last modification in nanoseconds
+     |  
+     |  sstt__nnlliinnkk
+     |      number of hard links
+     |  
+     |  sstt__rrddeevv
+     |      device type (if inode device)
+     |  
+     |  sstt__ssiizzee
+     |      total size, in bytes
+     |  
+     |  sstt__uuiidd
+     |      user ID of owner
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data and other attributes defined here:
+     |  
+     |  nn__ffiieellddss = 19
+     |  
+     |  nn__sseeqquueennccee__ffiieellddss = 10
+     |  
+     |  nn__uunnnnaammeedd__ffiieellddss = 3
+     |  
+     |  ----------------------------------------------------------------------
+     |  Methods inherited from builtins.tuple:
+     |  
+     |  ____aadddd____(self, value, /)
+     |      Return self+value.
+     |  
+     |  ____ccoonnttaaiinnss____(self, key, /)
+     |      Return key in self.
+     |  
+     |  ____eeqq____(self, value, /)
+     |      Return self==value.
+     |  
+     |  ____ggee____(self, value, /)
+     |      Return self>=value.
+     |  
+     |  ____ggeettaattttrriibbuuttee____(self, name, /)
+     |      Return getattr(self, name).
+     |  
+     |  ____ggeettiitteemm____(self, key, /)
+     |      Return self[key].
+     |  
+     |  ____ggeettnneewwaarrggss____(...)
+     |  
+     |  ____ggtt____(self, value, /)
+     |      Return self>value.
+     |  
+     |  ____hhaasshh____(self, /)
+     |      Return hash(self).
+     |  
+     |  ____iitteerr____(self, /)
+     |      Implement iter(self).
+     |  
+     |  ____llee____(self, value, /)
+     |      Return self<=value.
+     |  
+     |  ____lleenn____(self, /)
+     |      Return len(self).
+     |  
+     |  ____lltt____(self, value, /)
+     |      Return self<value.
+     |  
+     |  ____mmuull____(self, value, /)
+     |      Return self*value.n
+     |  
+     |  ____nnee____(self, value, /)
+     |      Return self!=value.
+     |  
+     |  ____rrmmuull____(self, value, /)
+     |      Return self*value.
+     |  
+     |  ccoouunntt(...)
+     |      T.count(value) -> integer -- return number of occurrences of value
+     |  
+     |  iinnddeexx(...)
+     |      T.index(value, [start, [stop]]) -> integer -- return first index of value.
+     |      Raises ValueError if the value is not present.
+    
+    class ssttaattvvffss__rreessuulltt(builtins.tuple)
+     |  statvfs_result: Result from statvfs or fstatvfs.
+     |  
+     |  This object may be accessed either as a tuple of
+     |    (bsize, frsize, blocks, bfree, bavail, files, ffree, favail, flag, namemax),
+     |  or via the attributes f_bsize, f_frsize, f_blocks, f_bfree, and so on.
+     |  
+     |  See os.statvfs for more information.
+     |  
+     |  Method resolution order:
+     |      statvfs_result
+     |      builtins.tuple
+     |      builtins.object
+     |  
+     |  Methods defined here:
+     |  
+     |  ____nneeww____(*args, **kwargs) from builtins.type
+     |      Create and return a new object.  See help(type) for accurate signature.
+     |  
+     |  ____rreedduuccee____(...)
+     |      helper for pickle
+     |  
+     |  ____rreepprr____(self, /)
+     |      Return repr(self).
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data descriptors defined here:
+     |  
+     |  ff__bbaavvaaiill
+     |  
+     |  ff__bbffrreeee
+     |  
+     |  ff__bblloocckkss
+     |  
+     |  ff__bbssiizzee
+     |  
+     |  ff__ffaavvaaiill
+     |  
+     |  ff__ffffrreeee
+     |  
+     |  ff__ffiilleess
+     |  
+     |  ff__ffllaagg
+     |  
+     |  ff__ffrrssiizzee
+     |  
+     |  ff__nnaammeemmaaxx
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data and other attributes defined here:
+     |  
+     |  nn__ffiieellddss = 10
+     |  
+     |  nn__sseeqquueennccee__ffiieellddss = 10
+     |  
+     |  nn__uunnnnaammeedd__ffiieellddss = 0
+     |  
+     |  ----------------------------------------------------------------------
+     |  Methods inherited from builtins.tuple:
+     |  
+     |  ____aadddd____(self, value, /)
+     |      Return self+value.
+     |  
+     |  ____ccoonnttaaiinnss____(self, key, /)
+     |      Return key in self.
+     |  
+     |  ____eeqq____(self, value, /)
+     |      Return self==value.
+     |  
+     |  ____ggee____(self, value, /)
+     |      Return self>=value.
+     |  
+     |  ____ggeettaattttrriibbuuttee____(self, name, /)
+     |      Return getattr(self, name).
+     |  
+     |  ____ggeettiitteemm____(self, key, /)
+     |      Return self[key].
+     |  
+     |  ____ggeettnneewwaarrggss____(...)
+     |  
+     |  ____ggtt____(self, value, /)
+     |      Return self>value.
+     |  
+     |  ____hhaasshh____(self, /)
+     |      Return hash(self).
+     |  
+     |  ____iitteerr____(self, /)
+     |      Implement iter(self).
+     |  
+     |  ____llee____(self, value, /)
+     |      Return self<=value.
+     |  
+     |  ____lleenn____(self, /)
+     |      Return len(self).
+     |  
+     |  ____lltt____(self, value, /)
+     |      Return self<value.
+     |  
+     |  ____mmuull____(self, value, /)
+     |      Return self*value.n
+     |  
+     |  ____nnee____(self, value, /)
+     |      Return self!=value.
+     |  
+     |  ____rrmmuull____(self, value, /)
+     |      Return self*value.
+     |  
+     |  ccoouunntt(...)
+     |      T.count(value) -> integer -- return number of occurrences of value
+     |  
+     |  iinnddeexx(...)
+     |      T.index(value, [start, [stop]]) -> integer -- return first index of value.
+     |      Raises ValueError if the value is not present.
+    
+    class tteerrmmiinnaall__ssiizzee(builtins.tuple)
+     |  A tuple of (columns, lines) for holding terminal window size
+     |  
+     |  Method resolution order:
+     |      terminal_size
+     |      builtins.tuple
+     |      builtins.object
+     |  
+     |  Methods defined here:
+     |  
+     |  ____nneeww____(*args, **kwargs) from builtins.type
+     |      Create and return a new object.  See help(type) for accurate signature.
+     |  
+     |  ____rreedduuccee____(...)
+     |      helper for pickle
+     |  
+     |  ____rreepprr____(self, /)
+     |      Return repr(self).
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data descriptors defined here:
+     |  
+     |  ccoolluummnnss
+     |      width of the terminal window in characters
+     |  
+     |  lliinneess
+     |      height of the terminal window in characters
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data and other attributes defined here:
+     |  
+     |  nn__ffiieellddss = 2
+     |  
+     |  nn__sseeqquueennccee__ffiieellddss = 2
+     |  
+     |  nn__uunnnnaammeedd__ffiieellddss = 0
+     |  
+     |  ----------------------------------------------------------------------
+     |  Methods inherited from builtins.tuple:
+     |  
+     |  ____aadddd____(self, value, /)
+     |      Return self+value.
+     |  
+     |  ____ccoonnttaaiinnss____(self, key, /)
+     |      Return key in self.
+     |  
+     |  ____eeqq____(self, value, /)
+     |      Return self==value.
+     |  
+     |  ____ggee____(self, value, /)
+     |      Return self>=value.
+     |  
+     |  ____ggeettaattttrriibbuuttee____(self, name, /)
+     |      Return getattr(self, name).
+     |  
+     |  ____ggeettiitteemm____(self, key, /)
+     |      Return self[key].
+     |  
+     |  ____ggeettnneewwaarrggss____(...)
+     |  
+     |  ____ggtt____(self, value, /)
+     |      Return self>value.
+     |  
+     |  ____hhaasshh____(self, /)
+     |      Return hash(self).
+     |  
+     |  ____iitteerr____(self, /)
+     |      Implement iter(self).
+     |  
+     |  ____llee____(self, value, /)
+     |      Return self<=value.
+     |  
+     |  ____lleenn____(self, /)
+     |      Return len(self).
+     |  
+     |  ____lltt____(self, value, /)
+     |      Return self<value.
+     |  
+     |  ____mmuull____(self, value, /)
+     |      Return self*value.n
+     |  
+     |  ____nnee____(self, value, /)
+     |      Return self!=value.
+     |  
+     |  ____rrmmuull____(self, value, /)
+     |      Return self*value.
+     |  
+     |  ccoouunntt(...)
+     |      T.count(value) -> integer -- return number of occurrences of value
+     |  
+     |  iinnddeexx(...)
+     |      T.index(value, [start, [stop]]) -> integer -- return first index of value.
+     |      Raises ValueError if the value is not present.
+    
+    class ttiimmeess__rreessuulltt(builtins.tuple)
+     |  times_result: Result from os.times().
+     |  
+     |  This object may be accessed either as a tuple of
+     |    (user, system, children_user, children_system, elapsed),
+     |  or via the attributes user, system, children_user, children_system,
+     |  and elapsed.
+     |  
+     |  See os.times for more information.
+     |  
+     |  Method resolution order:
+     |      times_result
+     |      builtins.tuple
+     |      builtins.object
+     |  
+     |  Methods defined here:
+     |  
+     |  ____nneeww____(*args, **kwargs) from builtins.type
+     |      Create and return a new object.  See help(type) for accurate signature.
+     |  
+     |  ____rreedduuccee____(...)
+     |      helper for pickle
+     |  
+     |  ____rreepprr____(self, /)
+     |      Return repr(self).
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data descriptors defined here:
+     |  
+     |  cchhiillddrreenn__ssyysstteemm
+     |      system time of children
+     |  
+     |  cchhiillddrreenn__uusseerr
+     |      user time of children
+     |  
+     |  eellaappsseedd
+     |      elapsed time since an arbitrary point in the past
+     |  
+     |  ssyysstteemm
+     |      system time
+     |  
+     |  uusseerr
+     |      user time
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data and other attributes defined here:
+     |  
+     |  nn__ffiieellddss = 5
+     |  
+     |  nn__sseeqquueennccee__ffiieellddss = 5
+     |  
+     |  nn__uunnnnaammeedd__ffiieellddss = 0
+     |  
+     |  ----------------------------------------------------------------------
+     |  Methods inherited from builtins.tuple:
+     |  
+     |  ____aadddd____(self, value, /)
+     |      Return self+value.
+     |  
+     |  ____ccoonnttaaiinnss____(self, key, /)
+     |      Return key in self.
+     |  
+     |  ____eeqq____(self, value, /)
+     |      Return self==value.
+     |  
+     |  ____ggee____(self, value, /)
+     |      Return self>=value.
+     |  
+     |  ____ggeettaattttrriibbuuttee____(self, name, /)
+     |      Return getattr(self, name).
+     |  
+     |  ____ggeettiitteemm____(self, key, /)
+     |      Return self[key].
+     |  
+     |  ____ggeettnneewwaarrggss____(...)
+     |  
+     |  ____ggtt____(self, value, /)
+     |      Return self>value.
+     |  
+     |  ____hhaasshh____(self, /)
+     |      Return hash(self).
+     |  
+     |  ____iitteerr____(self, /)
+     |      Implement iter(self).
+     |  
+     |  ____llee____(self, value, /)
+     |      Return self<=value.
+     |  
+     |  ____lleenn____(self, /)
+     |      Return len(self).
+     |  
+     |  ____lltt____(self, value, /)
+     |      Return self<value.
+     |  
+     |  ____mmuull____(self, value, /)
+     |      Return self*value.n
+     |  
+     |  ____nnee____(self, value, /)
+     |      Return self!=value.
+     |  
+     |  ____rrmmuull____(self, value, /)
+     |      Return self*value.
+     |  
+     |  ccoouunntt(...)
+     |      T.count(value) -> integer -- return number of occurrences of value
+     |  
+     |  iinnddeexx(...)
+     |      T.index(value, [start, [stop]]) -> integer -- return first index of value.
+     |      Raises ValueError if the value is not present.
+    
+    class uunnaammee__rreessuulltt(builtins.tuple)
+     |  uname_result: Result from os.uname().
+     |  
+     |  This object may be accessed either as a tuple of
+     |    (sysname, nodename, release, version, machine),
+     |  or via the attributes sysname, nodename, release, version, and machine.
+     |  
+     |  See os.uname for more information.
+     |  
+     |  Method resolution order:
+     |      uname_result
+     |      builtins.tuple
+     |      builtins.object
+     |  
+     |  Methods defined here:
+     |  
+     |  ____nneeww____(*args, **kwargs) from builtins.type
+     |      Create and return a new object.  See help(type) for accurate signature.
+     |  
+     |  ____rreedduuccee____(...)
+     |      helper for pickle
+     |  
+     |  ____rreepprr____(self, /)
+     |      Return repr(self).
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data descriptors defined here:
+     |  
+     |  mmaacchhiinnee
+     |      hardware identifier
+     |  
+     |  nnooddeennaammee
+     |      name of machine on network (implementation-defined)
+     |  
+     |  rreelleeaassee
+     |      operating system release
+     |  
+     |  ssyyssnnaammee
+     |      operating system name
+     |  
+     |  vveerrssiioonn
+     |      operating system version
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data and other attributes defined here:
+     |  
+     |  nn__ffiieellddss = 5
+     |  
+     |  nn__sseeqquueennccee__ffiieellddss = 5
+     |  
+     |  nn__uunnnnaammeedd__ffiieellddss = 0
+     |  
+     |  ----------------------------------------------------------------------
+     |  Methods inherited from builtins.tuple:
+     |  
+     |  ____aadddd____(self, value, /)
+     |      Return self+value.
+     |  
+     |  ____ccoonnttaaiinnss____(self, key, /)
+     |      Return key in self.
+     |  
+     |  ____eeqq____(self, value, /)
+     |      Return self==value.
+     |  
+     |  ____ggee____(self, value, /)
+     |      Return self>=value.
+     |  
+     |  ____ggeettaattttrriibbuuttee____(self, name, /)
+     |      Return getattr(self, name).
+     |  
+     |  ____ggeettiitteemm____(self, key, /)
+     |      Return self[key].
+     |  
+     |  ____ggeettnneewwaarrggss____(...)
+     |  
+     |  ____ggtt____(self, value, /)
+     |      Return self>value.
+     |  
+     |  ____hhaasshh____(self, /)
+     |      Return hash(self).
+     |  
+     |  ____iitteerr____(self, /)
+     |      Implement iter(self).
+     |  
+     |  ____llee____(self, value, /)
+     |      Return self<=value.
+     |  
+     |  ____lleenn____(self, /)
+     |      Return len(self).
+     |  
+     |  ____lltt____(self, value, /)
+     |      Return self<value.
+     |  
+     |  ____mmuull____(self, value, /)
+     |      Return self*value.n
+     |  
+     |  ____nnee____(self, value, /)
+     |      Return self!=value.
+     |  
+     |  ____rrmmuull____(self, value, /)
+     |      Return self*value.
+     |  
+     |  ccoouunntt(...)
+     |      T.count(value) -> integer -- return number of occurrences of value
+     |  
+     |  iinnddeexx(...)
+     |      T.index(value, [start, [stop]]) -> integer -- return first index of value.
+     |      Raises ValueError if the value is not present.
+    
+    class wwaaiittiidd__rreessuulltt(builtins.tuple)
+     |  waitid_result: Result from waitid.
+     |  
+     |  This object may be accessed either as a tuple of
+     |    (si_pid, si_uid, si_signo, si_status, si_code),
+     |  or via the attributes si_pid, si_uid, and so on.
+     |  
+     |  See os.waitid for more information.
+     |  
+     |  Method resolution order:
+     |      waitid_result
+     |      builtins.tuple
+     |      builtins.object
+     |  
+     |  Methods defined here:
+     |  
+     |  ____nneeww____(*args, **kwargs) from builtins.type
+     |      Create and return a new object.  See help(type) for accurate signature.
+     |  
+     |  ____rreedduuccee____(...)
+     |      helper for pickle
+     |  
+     |  ____rreepprr____(self, /)
+     |      Return repr(self).
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data descriptors defined here:
+     |  
+     |  ssii__ccooddee
+     |  
+     |  ssii__ppiidd
+     |  
+     |  ssii__ssiiggnnoo
+     |  
+     |  ssii__ssttaattuuss
+     |  
+     |  ssii__uuiidd
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data and other attributes defined here:
+     |  
+     |  nn__ffiieellddss = 5
+     |  
+     |  nn__sseeqquueennccee__ffiieellddss = 5
+     |  
+     |  nn__uunnnnaammeedd__ffiieellddss = 0
+     |  
+     |  ----------------------------------------------------------------------
+     |  Methods inherited from builtins.tuple:
+     |  
+     |  ____aadddd____(self, value, /)
+     |      Return self+value.
+     |  
+     |  ____ccoonnttaaiinnss____(self, key, /)
+     |      Return key in self.
+     |  
+     |  ____eeqq____(self, value, /)
+     |      Return self==value.
+     |  
+     |  ____ggee____(self, value, /)
+     |      Return self>=value.
+     |  
+     |  ____ggeettaattttrriibbuuttee____(self, name, /)
+     |      Return getattr(self, name).
+     |  
+     |  ____ggeettiitteemm____(self, key, /)
+     |      Return self[key].
+     |  
+     |  ____ggeettnneewwaarrggss____(...)
+     |  
+     |  ____ggtt____(self, value, /)
+     |      Return self>value.
+     |  
+     |  ____hhaasshh____(self, /)
+     |      Return hash(self).
+     |  
+     |  ____iitteerr____(self, /)
+     |      Implement iter(self).
+     |  
+     |  ____llee____(self, value, /)
+     |      Return self<=value.
+     |  
+     |  ____lleenn____(self, /)
+     |      Return len(self).
+     |  
+     |  ____lltt____(self, value, /)
+     |      Return self<value.
+     |  
+     |  ____mmuull____(self, value, /)
+     |      Return self*value.n
+     |  
+     |  ____nnee____(self, value, /)
+     |      Return self!=value.
+     |  
+     |  ____rrmmuull____(self, value, /)
+     |      Return self*value.
+     |  
+     |  ccoouunntt(...)
+     |      T.count(value) -> integer -- return number of occurrences of value
+     |  
+     |  iinnddeexx(...)
+     |      T.index(value, [start, [stop]]) -> integer -- return first index of value.
+     |      Raises ValueError if the value is not present.
+
+FFUUNNCCTTIIOONNSS
+    WWCCOORREEDDUUMMPP(status, /)
+        Return True if the process returning status was dumped to a core file.
+    
+    WWEEXXIITTSSTTAATTUUSS(status)
+        Return the process return code from status.
+    
+    WWIIFFCCOONNTTIINNUUEEDD(status)
+        Return True if a particular process was continued from a job control stop.
+        
+        Return True if the process returning status was continued from a
+        job control stop.
+    
+    WWIIFFEEXXIITTEEDD(status)
+        Return True if the process returning status exited via the exit() system call.
+    
+    WWIIFFSSIIGGNNAALLEEDD(status)
+        Return True if the process returning status was terminated by a signal.
+    
+    WWIIFFSSTTOOPPPPEEDD(status)
+        Return True if the process returning status was stopped.
+    
+    WWSSTTOOPPSSIIGG(status)
+        Return the signal that stopped the process that provided the status value.
+    
+    WWTTEERRMMSSIIGG(status)
+        Return the signal that terminated the process that provided the status value.
+    
+    __eexxiitt(status)
+        Exit to the system with specified status, without normal exit processing.
+    
+    aabboorrtt()
+        Abort the interpreter immediately.
+        
+        This function 'dumps core' or otherwise fails in the hardest way possible
+        on the hosting operating system.  This function never returns.
+    
+    aacccceessss(path, mode, *, dir_fd=None, effective_ids=False, follow_symlinks=True)
+        Use the real uid/gid to test for access to a path.
+        
+          path
+            Path to be tested; can be string or bytes
+          mode
+            Operating-system mode bitfield.  Can be F_OK to test existence,
+            or the inclusive-OR of R_OK, W_OK, and X_OK.
+          dir_fd
+            If not None, it should be a file descriptor open to a directory,
+            and path should be relative; path will then be relative to that
+            directory.
+          effective_ids
+            If True, access will use the effective uid/gid instead of
+            the real uid/gid.
+          follow_symlinks
+            If False, and the last element of the path is a symbolic link,
+            access will examine the symbolic link itself instead of the file
+            the link points to.
+        
+        dir_fd, effective_ids, and follow_symlinks may not be implemented
+          on your platform.  If they are unavailable, using them will raise a
+          NotImplementedError.
+        
+        Note that most operations will use the effective uid/gid, therefore this
+          routine can be used in a suid/sgid environment to test if the invoking user
+          has the specified access to the path.
+    
+    cchhddiirr(path)
+        Change the current working directory to the specified path.
+        
+        path may always be specified as a string.
+        On some platforms, path may also be specified as an open file descriptor.
+          If this functionality is unavailable, using it raises an exception.
+    
+    cchhmmoodd(path, mode, *, dir_fd=None, follow_symlinks=True)
+        Change the access permissions of a file.
+        
+          path
+            Path to be modified.  May always be specified as a str or bytes.
+            On some platforms, path may also be specified as an open file descriptor.
+            If this functionality is unavailable, using it raises an exception.
+          mode
+            Operating-system mode bitfield.
+          dir_fd
+            If not None, it should be a file descriptor open to a directory,
+            and path should be relative; path will then be relative to that
+            directory.
+          follow_symlinks
+            If False, and the last element of the path is a symbolic link,
+            chmod will modify the symbolic link itself instead of the file
+            the link points to.
+        
+        It is an error to use dir_fd or follow_symlinks when specifying path as
+          an open file descriptor.
+        dir_fd and follow_symlinks may not be implemented on your platform.
+          If they are unavailable, using them will raise a NotImplementedError.
+    
+    cchhoowwnn(path, uid, gid, *, dir_fd=None, follow_symlinks=True)
+        Change the owner and group id of path to the numeric uid and gid.\
+        
+          path
+            Path to be examined; can be string, bytes, or open-file-descriptor int.
+          dir_fd
+            If not None, it should be a file descriptor open to a directory,
+            and path should be relative; path will then be relative to that
+            directory.
+          follow_symlinks
+            If False, and the last element of the path is a symbolic link,
+            stat will examine the symbolic link itself instead of the file
+            the link points to.
+        
+        path may always be specified as a string.
+        On some platforms, path may also be specified as an open file descriptor.
+          If this functionality is unavailable, using it raises an exception.
+        If dir_fd is not None, it should be a file descriptor open to a directory,
+          and path should be relative; path will then be relative to that directory.
+        If follow_symlinks is False, and the last element of the path is a symbolic
+          link, chown will modify the symbolic link itself instead of the file the
+          link points to.
+        It is an error to use dir_fd or follow_symlinks when specifying path as
+          an open file descriptor.
+        dir_fd and follow_symlinks may not be implemented on your platform.
+          If they are unavailable, using them will raise a NotImplementedError.
+    
+    cchhrroooott(path)
+        Change root directory to path.
+    
+    cclloossee(fd)
+        Close a file descriptor.
+    
+    cclloosseerraannggee(fd_low, fd_high, /)
+        Closes all file descriptors in [fd_low, fd_high), ignoring errors.
+    
+    ccoonnffssttrr(name, /)
+        Return a string-valued system configuration variable.
+    
+    ccppuu__ccoouunntt()
+        Return the number of CPUs in the system; return None if indeterminable.
+        
+        This number is not equivalent to the number of CPUs the current process can
+        use.  The number of usable CPUs can be obtained with
+        ``len(os.sched_getaffinity(0))``
+    
+    cctteerrmmiidd()
+        Return the name of the controlling terminal for this process.
+    
+    ddeevviiccee__eennccooddiinngg(fd)
+        Return a string describing the encoding of a terminal's file descriptor.
+        
+        The file descriptor must be attached to a terminal.
+        If the device is not a terminal, return None.
+    
+    dduupp(fd, /)
+        Return a duplicate of a file descriptor.
+    
+    dduupp22(fd, fd2, inheritable=True)
+        Duplicate file descriptor.
+    
+    eexxeeccll(file, *args)
+        execl(file, *args)
+        
+        Execute the executable file with argument list args, replacing the
+        current process.
+    
+    eexxeeccllee(file, *args)
+        execle(file, *args, env)
+        
+        Execute the executable file with argument list args and
+        environment env, replacing the current process.
+    
+    eexxeeccllpp(file, *args)
+        execlp(file, *args)
+        
+        Execute the executable file (which is searched for along $PATH)
+        with argument list args, replacing the current process.
+    
+    eexxeeccllppee(file, *args)
+        execlpe(file, *args, env)
+        
+        Execute the executable file (which is searched for along $PATH)
+        with argument list args and environment env, replacing the current
+        process.
+    
+    eexxeeccvv(path, argv, /)
+        Execute an executable path with arguments, replacing current process.
+        
+        path
+          Path of executable file.
+        argv
+          Tuple or list of strings.
+    
+    eexxeeccvvee(path, argv, env)
+        Execute an executable path with arguments, replacing current process.
+        
+        path
+          Path of executable file.
+        argv
+          Tuple or list of strings.
+        env
+          Dictionary of strings mapping to strings.
+    
+    eexxeeccvvpp(file, args)
+        execvp(file, args)
+        
+        Execute the executable file (which is searched for along $PATH)
+        with argument list args, replacing the current process.
+        args may be a list or tuple of strings.
+    
+    eexxeeccvvppee(file, args, env)
+        execvpe(file, args, env)
+        
+        Execute the executable file (which is searched for along $PATH)
+        with argument list args and environment env , replacing the
+        current process.
+        args may be a list or tuple of strings.
+    
+    ffcchhddiirr(fd)
+        Change to the directory of the given file descriptor.
+        
+        fd must be opened on a directory, not a file.
+        Equivalent to os.chdir(fd).
+    
+    ffcchhmmoodd(fd, mode)
+        Change the access permissions of the file given by file descriptor fd.
+        
+        Equivalent to os.chmod(fd, mode).
+    
+    ffcchhoowwnn(fd, uid, gid)
+        Change the owner and group id of the file specified by file descriptor.
+        
+        Equivalent to os.chown(fd, uid, gid).
+    
+    ffddaattaassyynncc(fd)
+        Force write of fd to disk without forcing update of metadata.
+    
+    ffddooppeenn(fd, *args, **kwargs)
+        # Supply os.fdopen()
+    
+    ffoorrkk()
+        Fork a child process.
+        
+        Return 0 to child process and PID of child to parent process.
+    
+    ffoorrkkppttyy()
+        Fork a new process with a new pseudo-terminal as controlling tty.
+        
+        Returns a tuple of (pid, master_fd).
+        Like fork(), return pid of 0 to the child process,
+        and pid of child to the parent process.
+        To both, return fd of newly opened pseudo-terminal.
+    
+    ffppaatthhccoonnff(fd, name, /)
+        Return the configuration limit name for the file descriptor fd.
+        
+        If there is no limit, return -1.
+    
+    ffssddeeccooddee(filename)
+        Decode filename (an os.PathLike, bytes, or str) from the filesystem
+        encoding with 'surrogateescape' error handler, return str unchanged. On
+        Windows, use 'strict' error handler if the file system encoding is
+        'mbcs' (which is the default encoding).
+    
+    ffsseennccooddee(filename)
+        Encode filename (an os.PathLike, bytes, or str) to the filesystem
+        encoding with 'surrogateescape' error handler, return bytes unchanged.
+        On Windows, use 'strict' error handler if the file system encoding is
+        'mbcs' (which is the default encoding).
+    
+    ffssppaatthh(path)
+        Return the file system path representation of the object.
+        
+        If the object is str or bytes, then allow it to pass through as-is. If the
+        object defines __fspath__(), then return the result of that method. All other
+        types raise a TypeError.
+    
+    ffssttaatt(fd)
+        Perform a stat system call on the given file descriptor.
+        
+        Like stat(), but for an open file descriptor.
+        Equivalent to os.stat(fd).
+    
+    ffssttaattvvffss(fd, /)
+        Perform an fstatvfs system call on the given fd.
+        
+        Equivalent to statvfs(fd).
+    
+    ffssyynncc(fd)
+        Force write of fd to disk.
+    
+    ffttrruunnccaattee(fd, length, /)
+        Truncate a file, specified by file descriptor, to a specific length.
+    
+    ffwwaallkk(top='.', topdown=True, onerror=None, *, follow_symlinks=False, dir_fd=None)
+        Directory tree generator.
+        
+        This behaves exactly like walk(), except that it yields a 4-tuple
+        
+            dirpath, dirnames, filenames, dirfd
+        
+        `dirpath`, `dirnames` and `filenames` are identical to walk() output,
+        and `dirfd` is a file descriptor referring to the directory `dirpath`.
+        
+        The advantage of fwalk() over walk() is that it's safe against symlink
+        races (when follow_symlinks is False).
+        
+        If dir_fd is not None, it should be a file descriptor open to a directory,
+          and top should be relative; top will then be relative to that directory.
+          (dir_fd is always supported for fwalk.)
+        
+        Caution:
+        Since fwalk() yields file descriptors, those are only valid until the
+        next iteration step, so you should dup() them if you want to keep them
+        for a longer period.
+        
+        Example:
+        
+        import os
+        for root, dirs, files, rootfd in os.fwalk('python/Lib/email'):
+            print(root, "consumes", end="")
+            print(sum([os.stat(name, dir_fd=rootfd).st_size for name in files]),
+                  end="")
+            print("bytes in", len(files), "non-directory files")
+            if 'CVS' in dirs:
+                dirs.remove('CVS')  # don't visit CVS directories
+    
+    ggeett__bblloocckkiinngg(...)
+        get_blocking(fd) -> bool
+        
+        Get the blocking mode of the file descriptor:
+        False if the O_NONBLOCK flag is set, True if the flag is cleared.
+    
+    ggeett__eexxeecc__ppaatthh(env=None)
+        Returns the sequence of directories that will be searched for the
+        named executable (similar to a shell) when launching a process.
+        
+        *env* must be an environment variable dict or None.  If *env* is None,
+        os.environ will be used.
+    
+    ggeett__iinnhheerriittaabbllee(fd, /)
+        Get the close-on-exe flag of the specified file descriptor.
+    
+    ggeett__tteerrmmiinnaall__ssiizzee(...)
+        Return the size of the terminal window as (columns, lines).
+        
+        The optional argument fd (default standard output) specifies
+        which file descriptor should be queried.
+        
+        If the file descriptor is not connected to a terminal, an OSError
+        is thrown.
+        
+        This function will only be defined if an implementation is
+        available for this system.
+        
+        shutil.get_terminal_size is the high-level function which should 
+        normally be used, os.get_terminal_size is the low-level implementation.
+    
+    ggeettccwwdd()
+        Return a unicode string representing the current working directory.
+    
+    ggeettccwwddbb()
+        Return a bytes string representing the current working directory.
+    
+    ggeetteeggiidd()
+        Return the current process's effective group id.
+    
+    ggeetteennvv(key, default=None)
+        Get an environment variable, return None if it doesn't exist.
+        The optional second argument can specify an alternate default.
+        key, default and the result are str.
+    
+    ggeetteennvvbb(key, default=None)
+        Get an environment variable, return None if it doesn't exist.
+        The optional second argument can specify an alternate default.
+        key, default and the result are bytes.
+    
+    ggeetteeuuiidd()
+        Return the current process's effective user id.
+    
+    ggeettggiidd()
+        Return the current process's group id.
+    
+    ggeettggrroouupplliisstt(...)
+        getgrouplist(user, group) -> list of groups to which a user belongs
+        
+        Returns a list of groups to which a user belongs.
+        
+            user: username to lookup
+            group: base group id of the user
+    
+    ggeettggrroouuppss()
+        Return list of supplemental group IDs for the process.
+    
+    ggeettllooaaddaavvgg()
+        Return average recent system load information.
+        
+        Return the number of processes in the system run queue averaged over
+        the last 1, 5, and 15 minutes as a tuple of three floats.
+        Raises OSError if the load average was unobtainable.
+    
+    ggeettllooggiinn()
+        Return the actual login name.
+    
+    ggeettppggiidd(pid)
+        Call the system call getpgid(), and return the result.
+    
+    ggeettppggrrpp()
+        Return the current process group id.
+    
+    ggeettppiidd()
+        Return the current process id.
+    
+    ggeettppppiidd()
+        Return the parent's process id.
+        
+        If the parent process has already exited, Windows machines will still
+        return its id; others systems will return the id of the 'init' process (1).
+    
+    ggeettpprriioorriittyy(which, who)
+        Return program scheduling priority.
+    
+    ggeettrreessggiidd()
+        Return a tuple of the current process's real, effective, and saved group ids.
+    
+    ggeettrreessuuiidd()
+        Return a tuple of the current process's real, effective, and saved user ids.
+    
+    ggeettssiidd(pid, /)
+        Call the system call getsid(pid) and return the result.
+    
+    ggeettuuiidd()
+        Return the current process's user id.
+    
+    ggeettxxaattttrr(path, attribute, *, follow_symlinks=True)
+        Return the value of extended attribute attribute on path.
+        
+        path may be either a string or an open file descriptor.
+        If follow_symlinks is False, and the last element of the path is a symbolic
+          link, getxattr will examine the symbolic link itself instead of the file
+          the link points to.
+    
+    iinniittggrroouuppss(...)
+        initgroups(username, gid) -> None
+        
+        Call the system initgroups() to initialize the group access list with all of
+        the groups of which the specified username is a member, plus the specified
+        group id.
+    
+    iissaattttyy(fd, /)
+        Return True if the fd is connected to a terminal.
+        
+        Return True if the file descriptor is an open file descriptor
+        connected to the slave end of a terminal.
+    
+    kkiillll(pid, signal, /)
+        Kill a process with a signal.
+    
+    kkiillllppgg(pgid, signal, /)
+        Kill a process group with a signal.
+    
+    llcchhoowwnn(path, uid, gid)
+        Change the owner and group id of path to the numeric uid and gid.
+        
+        This function will not follow symbolic links.
+        Equivalent to os.chown(path, uid, gid, follow_symlinks=False).
+    
+    lliinnkk(src, dst, *, src_dir_fd=None, dst_dir_fd=None, follow_symlinks=True)
+        Create a hard link to a file.
+        
+        If either src_dir_fd or dst_dir_fd is not None, it should be a file
+          descriptor open to a directory, and the respective path string (src or dst)
+          should be relative; the path will then be relative to that directory.
+        If follow_symlinks is False, and the last element of src is a symbolic
+          link, link will create a link to the symbolic link itself instead of the
+          file the link points to.
+        src_dir_fd, dst_dir_fd, and follow_symlinks may not be implemented on your
+          platform.  If they are unavailable, using them will raise a
+          NotImplementedError.
+    
+    lliissttddiirr(path=None)
+        Return a list containing the names of the files in the directory.
+        
+        path can be specified as either str or bytes.  If path is bytes,
+          the filenames returned will also be bytes; in all other circumstances
+          the filenames returned will be str.
+        If path is None, uses the path='.'.
+        On some platforms, path may also be specified as an open file descriptor;\
+          the file descriptor must refer to a directory.
+          If this functionality is unavailable, using it raises NotImplementedError.
+        
+        The list is in arbitrary order.  It does not include the special
+        entries '.' and '..' even if they are present in the directory.
+    
+    lliissttxxaattttrr(path=None, *, follow_symlinks=True)
+        Return a list of extended attributes on path.
+        
+        path may be either None, a string, or an open file descriptor.
+        if path is None, listxattr will examine the current directory.
+        If follow_symlinks is False, and the last element of the path is a symbolic
+          link, listxattr will examine the symbolic link itself instead of the file
+          the link points to.
+    
+    lloocckkff(fd, command, length, /)
+        Apply, test or remove a POSIX lock on an open file descriptor.
+        
+        fd
+          An open file descriptor.
+        command
+          One of F_LOCK, F_TLOCK, F_ULOCK or F_TEST.
+        length
+          The number of bytes to lock, starting at the current position.
+    
+    llsseeeekk(fd, position, how, /)
+        Set the position of a file descriptor.  Return the new position.
+        
+        Return the new cursor position in number of bytes
+        relative to the beginning of the file.
+    
+    llssttaatt(path, *, dir_fd=None)
+        Perform a stat system call on the given path, without following symbolic links.
+        
+        Like stat(), but do not follow symbolic links.
+        Equivalent to stat(path, follow_symlinks=False).
+    
+    mmaajjoorr(device, /)
+        Extracts a device major number from a raw device number.
+    
+    mmaakkeeddeevv(major, minor, /)
+        Composes a raw device number from the major and minor device numbers.
+    
+    mmaakkeeddiirrss(name, mode=511, exist_ok=False)
+        makedirs(name [, mode=0o777][, exist_ok=False])
+        
+        Super-mkdir; create a leaf directory and all intermediate ones.  Works like
+        mkdir, except that any intermediate path segment (not just the rightmost)
+        will be created if it does not exist. If the target directory already
+        exists, raise an OSError if exist_ok is False. Otherwise no exception is
+        raised.  This is recursive.
+    
+    mmiinnoorr(device, /)
+        Extracts a device minor number from a raw device number.
+    
+    mmkkddiirr(path, mode=511, *, dir_fd=None)
+        Create a directory.
+        
+        If dir_fd is not None, it should be a file descriptor open to a directory,
+          and path should be relative; path will then be relative to that directory.
+        dir_fd may not be implemented on your platform.
+          If it is unavailable, using it will raise a NotImplementedError.
+        
+        The mode argument is ignored on Windows.
+    
+    mmkkffiiffoo(path, mode=438, *, dir_fd=None)
+        Create a "fifo" (a POSIX named pipe).
+        
+        If dir_fd is not None, it should be a file descriptor open to a directory,
+          and path should be relative; path will then be relative to that directory.
+        dir_fd may not be implemented on your platform.
+          If it is unavailable, using it will raise a NotImplementedError.
+    
+    mmkknnoodd(path, mode=384, device=0, *, dir_fd=None)
+        Create a node in the file system.
+        
+        Create a node in the file system (file, device special file or named pipe)
+        at path.  mode specifies both the permissions to use and the
+        type of node to be created, being combined (bitwise OR) with one of
+        S_IFREG, S_IFCHR, S_IFBLK, and S_IFIFO.  If S_IFCHR or S_IFBLK is set on mode,
+        device defines the newly created device special file (probably using
+        os.makedev()).  Otherwise device is ignored.
+        
+        If dir_fd is not None, it should be a file descriptor open to a directory,
+          and path should be relative; path will then be relative to that directory.
+        dir_fd may not be implemented on your platform.
+          If it is unavailable, using it will raise a NotImplementedError.
+    
+    nniiccee(increment, /)
+        Add increment to the priority of process and return the new priority.
+    
+    ooppeenn(path, flags, mode=511, *, dir_fd=None)
+        Open a file for low level IO.  Returns a file descriptor (integer).
+        
+        If dir_fd is not None, it should be a file descriptor open to a directory,
+          and path should be relative; path will then be relative to that directory.
+        dir_fd may not be implemented on your platform.
+          If it is unavailable, using it will raise a NotImplementedError.
+    
+    ooppeennppttyy()
+        Open a pseudo-terminal.
+        
+        Return a tuple of (master_fd, slave_fd) containing open file descriptors
+        for both the master and slave ends.
+    
+    ppaatthhccoonnff(path, name)
+        Return the configuration limit name for the file or directory path.
+        
+        If there is no limit, return -1.
+        On some platforms, path may also be specified as an open file descriptor.
+          If this functionality is unavailable, using it raises an exception.
+    
+    ppiippee()
+        Create a pipe.
+        
+        Returns a tuple of two file descriptors:
+          (read_fd, write_fd)
+    
+    ppiippee22(flags, /)
+        Create a pipe with flags set atomically.
+        
+        Returns a tuple of two file descriptors:
+          (read_fd, write_fd)
+        
+        flags can be constructed by ORing together one or more of these values:
+        O_NONBLOCK, O_CLOEXEC.
+    
+    ppooppeenn(cmd, mode='r', buffering=-1)
+        # Supply os.popen()
+    
+    ppoossiixx__ffaaddvviissee(fd, offset, length, advice, /)
+        Announce an intention to access data in a specific pattern.
+        
+        Announce an intention to access data in a specific pattern, thus allowing
+        the kernel to make optimizations.
+        The advice applies to the region of the file specified by fd starting at
+        offset and continuing for length bytes.
+        advice is one of POSIX_FADV_NORMAL, POSIX_FADV_SEQUENTIAL,
+        POSIX_FADV_RANDOM, POSIX_FADV_NOREUSE, POSIX_FADV_WILLNEED, or
+        POSIX_FADV_DONTNEED.
+    
+    ppoossiixx__ffaallllooccaattee(fd, offset, length, /)
+        Ensure a file has allocated at least a particular number of bytes on disk.
+        
+        Ensure that the file specified by fd encompasses a range of bytes
+        starting at offset bytes from the beginning and continuing for length bytes.
+    
+    pprreeaadd(fd, length, offset, /)
+        Read a number of bytes from a file descriptor starting at a particular offset.
+        
+        Read length bytes from file descriptor fd, starting at offset bytes from
+        the beginning of the file.  The file offset remains unchanged.
+    
+    ppuutteennvv(name, value, /)
+        Change or add an environment variable.
+    
+    ppwwrriittee(fd, buffer, offset, /)
+        Write bytes to a file descriptor starting at a particular offset.
+        
+        Write buffer to fd, starting at offset bytes from the beginning of
+        the file.  Returns the number of bytes writte.  Does not change the
+        current file offset.
+    
+    rreeaadd(fd, length, /)
+        Read from a file descriptor.  Returns a bytes object.
+    
+    rreeaaddlliinnkk(...)
+        readlink(path, *, dir_fd=None) -> path
+        
+        Return a string representing the path to which the symbolic link points.
+        
+        If dir_fd is not None, it should be a file descriptor open to a directory,
+          and path should be relative; path will then be relative to that directory.
+        dir_fd may not be implemented on your platform.
+          If it is unavailable, using it will raise a NotImplementedError.
+    
+    rreeaaddvv(fd, buffers, /)
+        Read from a file descriptor fd into an iterable of buffers.
+        
+        The buffers should be mutable buffers accepting bytes.
+        readv will transfer data into each buffer until it is full
+        and then move on to the next buffer in the sequence to hold
+        the rest of the data.
+        
+        readv returns the total number of bytes read,
+        which may be less than the total capacity of all the buffers.
+    
+    rreemmoovvee(path, *, dir_fd=None)
+        Remove a file (same as unlink()).
+        
+        If dir_fd is not None, it should be a file descriptor open to a directory,
+          and path should be relative; path will then be relative to that directory.
+        dir_fd may not be implemented on your platform.
+          If it is unavailable, using it will raise a NotImplementedError.
+    
+    rreemmoovveeddiirrss(name)
+        removedirs(name)
+        
+        Super-rmdir; remove a leaf directory and all empty intermediate
+        ones.  Works like rmdir except that, if the leaf directory is
+        successfully removed, directories corresponding to rightmost path
+        segments will be pruned away until either the whole path is
+        consumed or an error occurs.  Errors during this latter phase are
+        ignored -- they generally mean that a directory was not empty.
+    
+    rreemmoovveexxaattttrr(path, attribute, *, follow_symlinks=True)
+        Remove extended attribute attribute on path.
+        
+        path may be either a string or an open file descriptor.
+        If follow_symlinks is False, and the last element of the path is a symbolic
+          link, removexattr will modify the symbolic link itself instead of the file
+          the link points to.
+    
+    rreennaammee(src, dst, *, src_dir_fd=None, dst_dir_fd=None)
+        Rename a file or directory.
+        
+        If either src_dir_fd or dst_dir_fd is not None, it should be a file
+          descriptor open to a directory, and the respective path string (src or dst)
+          should be relative; the path will then be relative to that directory.
+        src_dir_fd and dst_dir_fd, may not be implemented on your platform.
+          If they are unavailable, using them will raise a NotImplementedError.
+    
+    rreennaammeess(old, new)
+        renames(old, new)
+        
+        Super-rename; create directories as necessary and delete any left
+        empty.  Works like rename, except creation of any intermediate
+        directories needed to make the new pathname good is attempted
+        first.  After the rename, directories corresponding to rightmost
+        path segments of the old name will be pruned until either the
+        whole path is consumed or a nonempty directory is found.
+        
+        Note: this function can fail with the new directory structure made
+        if you lack permissions needed to unlink the leaf directory or
+        file.
+    
+    rreeppllaaccee(src, dst, *, src_dir_fd=None, dst_dir_fd=None)
+        Rename a file or directory, overwriting the destination.
+        
+        If either src_dir_fd or dst_dir_fd is not None, it should be a file
+          descriptor open to a directory, and the respective path string (src or dst)
+          should be relative; the path will then be relative to that directory.
+        src_dir_fd and dst_dir_fd, may not be implemented on your platform.
+          If they are unavailable, using them will raise a NotImplementedError."
+    
+    rrmmddiirr(path, *, dir_fd=None)
+        Remove a directory.
+        
+        If dir_fd is not None, it should be a file descriptor open to a directory,
+          and path should be relative; path will then be relative to that directory.
+        dir_fd may not be implemented on your platform.
+          If it is unavailable, using it will raise a NotImplementedError.
+    
+    ssccaannddiirr(...)
+        scandir(path='.') -> iterator of DirEntry objects for given path
+    
+    sscchheedd__ggeett__pprriioorriittyy__mmaaxx(policy)
+        Get the maximum scheduling priority for policy.
+    
+    sscchheedd__ggeett__pprriioorriittyy__mmiinn(policy)
+        Get the minimum scheduling priority for policy.
+    
+    sscchheedd__ggeettaaffffiinniittyy(pid, /)
+        Return the affinity of the process identified by pid (or the current process if zero).
+        
+        The affinity is returned as a set of CPU identifiers.
+    
+    sscchheedd__ggeettppaarraamm(pid, /)
+        Returns scheduling parameters for the process identified by pid.
+        
+        If pid is 0, returns parameters for the calling process.
+        Return value is an instance of sched_param.
+    
+    sscchheedd__ggeettsscchheedduulleerr(pid, /)
+        Get the scheduling policy for the process identifiedy by pid.
+        
+        Passing 0 for pid returns the scheduling policy for the calling process.
+    
+    sscchheedd__rrrr__ggeett__iinntteerrvvaall(pid, /)
+        Return the round-robin quantum for the process identified by pid, in seconds.
+        
+        Value returned is a float.
+    
+    sscchheedd__sseettaaffffiinniittyy(pid, mask, /)
+        Set the CPU affinity of the process identified by pid to mask.
+        
+        mask should be an iterable of integers identifying CPUs.
+    
+    sscchheedd__sseettppaarraamm(pid, param, /)
+        Set scheduling parameters for the process identified by pid.
+        
+        If pid is 0, sets parameters for the calling process.
+        param should be an instance of sched_param.
+    
+    sscchheedd__sseettsscchheedduulleerr(pid, policy, param, /)
+        Set the scheduling policy for the process identified by pid.
+        
+        If pid is 0, the calling process is changed.
+        param is an instance of sched_param.
+    
+    sscchheedd__yyiieelldd()
+        Voluntarily relinquish the CPU.
+    
+    sseennddffiillee(...)
+        sendfile(out, in, offset, count) -> byteswritten
+        sendfile(out, in, offset, count[, headers][, trailers], flags=0)
+                    -> byteswritten
+        Copy count bytes from file descriptor in to file descriptor out.
+    
+    sseett__bblloocckkiinngg(...)
+        set_blocking(fd, blocking)
+        
+        Set the blocking mode of the specified file descriptor.
+        Set the O_NONBLOCK flag if blocking is False,
+        clear the O_NONBLOCK flag otherwise.
+    
+    sseett__iinnhheerriittaabbllee(fd, inheritable, /)
+        Set the inheritable flag of the specified file descriptor.
+    
+    sseetteeggiidd(egid, /)
+        Set the current process's effective group id.
+    
+    sseetteeuuiidd(euid, /)
+        Set the current process's effective user id.
+    
+    sseettggiidd(gid, /)
+        Set the current process's group id.
+    
+    sseettggrroouuppss(groups, /)
+        Set the groups of the current process to list.
+    
+    sseettppggiidd(pid, pgrp, /)
+        Call the system call setpgid(pid, pgrp).
+    
+    sseettppggrrpp()
+        Make the current process the leader of its process group.
+    
+    sseettpprriioorriittyy(which, who, priority)
+        Set program scheduling priority.
+    
+    sseettrreeggiidd(rgid, egid, /)
+        Set the current process's real and effective group ids.
+    
+    sseettrreessggiidd(rgid, egid, sgid, /)
+        Set the current process's real, effective, and saved group ids.
+    
+    sseettrreessuuiidd(ruid, euid, suid, /)
+        Set the current process's real, effective, and saved user ids.
+    
+    sseettrreeuuiidd(ruid, euid, /)
+        Set the current process's real and effective user ids.
+    
+    sseettssiidd()
+        Call the system call setsid().
+    
+    sseettuuiidd(uid, /)
+        Set the current process's user id.
+    
+    sseettxxaattttrr(path, attribute, value, flags=0, *, follow_symlinks=True)
+        Set extended attribute attribute on path to value.
+        
+        path may be either a string or an open file descriptor.
+        If follow_symlinks is False, and the last element of the path is a symbolic
+          link, setxattr will modify the symbolic link itself instead of the file
+          the link points to.
+    
+    ssppaawwnnll(mode, file, *args)
+        spawnl(mode, file, *args) -> integer
+        
+        Execute file with arguments from args in a subprocess.
+        If mode == P_NOWAIT return the pid of the process.
+        If mode == P_WAIT return the process's exit code if it exits normally;
+        otherwise return -SIG, where SIG is the signal that killed it.
+    
+    ssppaawwnnllee(mode, file, *args)
+        spawnle(mode, file, *args, env) -> integer
+        
+        Execute file with arguments from args in a subprocess with the
+        supplied environment.
+        If mode == P_NOWAIT return the pid of the process.
+        If mode == P_WAIT return the process's exit code if it exits normally;
+        otherwise return -SIG, where SIG is the signal that killed it.
+    
+    ssppaawwnnllpp(mode, file, *args)
+        spawnlp(mode, file, *args) -> integer
+        
+        Execute file (which is looked for along $PATH) with arguments from
+        args in a subprocess with the supplied environment.
+        If mode == P_NOWAIT return the pid of the process.
+        If mode == P_WAIT return the process's exit code if it exits normally;
+        otherwise return -SIG, where SIG is the signal that killed it.
+    
+    ssppaawwnnllppee(mode, file, *args)
+        spawnlpe(mode, file, *args, env) -> integer
+        
+        Execute file (which is looked for along $PATH) with arguments from
+        args in a subprocess with the supplied environment.
+        If mode == P_NOWAIT return the pid of the process.
+        If mode == P_WAIT return the process's exit code if it exits normally;
+        otherwise return -SIG, where SIG is the signal that killed it.
+    
+    ssppaawwnnvv(mode, file, args)
+        spawnv(mode, file, args) -> integer
+        
+        Execute file with arguments from args in a subprocess.
+        If mode == P_NOWAIT return the pid of the process.
+        If mode == P_WAIT return the process's exit code if it exits normally;
+        otherwise return -SIG, where SIG is the signal that killed it.
+    
+    ssppaawwnnvvee(mode, file, args, env)
+        spawnve(mode, file, args, env) -> integer
+        
+        Execute file with arguments from args in a subprocess with the
+        specified environment.
+        If mode == P_NOWAIT return the pid of the process.
+        If mode == P_WAIT return the process's exit code if it exits normally;
+        otherwise return -SIG, where SIG is the signal that killed it.
+    
+    ssppaawwnnvvpp(mode, file, args)
+        spawnvp(mode, file, args) -> integer
+        
+        Execute file (which is looked for along $PATH) with arguments from
+        args in a subprocess.
+        If mode == P_NOWAIT return the pid of the process.
+        If mode == P_WAIT return the process's exit code if it exits normally;
+        otherwise return -SIG, where SIG is the signal that killed it.
+    
+    ssppaawwnnvvppee(mode, file, args, env)
+        spawnvpe(mode, file, args, env) -> integer
+        
+        Execute file (which is looked for along $PATH) with arguments from
+        args in a subprocess with the supplied environment.
+        If mode == P_NOWAIT return the pid of the process.
+        If mode == P_WAIT return the process's exit code if it exits normally;
+        otherwise return -SIG, where SIG is the signal that killed it.
+    
+    ssttaatt(path, *, dir_fd=None, follow_symlinks=True)
+        Perform a stat system call on the given path.
+        
+          path
+            Path to be examined; can be string, bytes, path-like object or
+            open-file-descriptor int.
+          dir_fd
+            If not None, it should be a file descriptor open to a directory,
+            and path should be a relative string; path will then be relative to
+            that directory.
+          follow_symlinks
+            If False, and the last element of the path is a symbolic link,
+            stat will examine the symbolic link itself instead of the file
+            the link points to.
+        
+        dir_fd and follow_symlinks may not be implemented
+          on your platform.  If they are unavailable, using them will raise a
+          NotImplementedError.
+        
+        It's an error to use dir_fd or follow_symlinks when specifying path as
+          an open file descriptor.
+    
+    ssttaatt__ffllooaatt__ttiimmeess(...)
+        stat_float_times([newval]) -> oldval
+        
+        Determine whether os.[lf]stat represents time stamps as float objects.
+        
+        If value is True, future calls to stat() return floats; if it is False,
+        future calls return ints.
+        If value is omitted, return the current setting.
+    
+    ssttaattvvffss(path)
+        Perform a statvfs system call on the given path.
+        
+        path may always be specified as a string.
+        On some platforms, path may also be specified as an open file descriptor.
+          If this functionality is unavailable, using it raises an exception.
+    
+    ssttrreerrrroorr(code, /)
+        Translate an error code to a message string.
+    
+    ssyymmlliinnkk(src, dst, target_is_directory=False, *, dir_fd=None)
+        Create a symbolic link pointing to src named dst.
+        
+        target_is_directory is required on Windows if the target is to be
+          interpreted as a directory.  (On Windows, symlink requires
+          Windows 6.0 or greater, and raises a NotImplementedError otherwise.)
+          target_is_directory is ignored on non-Windows platforms.
+        
+        If dir_fd is not None, it should be a file descriptor open to a directory,
+          and path should be relative; path will then be relative to that directory.
+        dir_fd may not be implemented on your platform.
+          If it is unavailable, using it will raise a NotImplementedError.
+    
+    ssyynncc()
+        Force write of everything to disk.
+    
+    ssyyssccoonnff(name, /)
+        Return an integer-valued system configuration variable.
+    
+    ssyysstteemm(command)
+        Execute the command in a subshell.
+    
+    ttccggeettppggrrpp(fd, /)
+        Return the process group associated with the terminal specified by fd.
+    
+    ttccsseettppggrrpp(fd, pgid, /)
+        Set the process group associated with the terminal specified by fd.
+    
+    ttiimmeess()
+        Return a collection containing process timing information.
+        
+        The object returned behaves like a named tuple with these fields:
+          (utime, stime, cutime, cstime, elapsed_time)
+        All fields are floating point numbers.
+    
+    ttrruunnccaattee(path, length)
+        Truncate a file, specified by path, to a specific length.
+        
+        On some platforms, path may also be specified as an open file descriptor.
+          If this functionality is unavailable, using it raises an exception.
+    
+    ttttyynnaammee(fd, /)
+        Return the name of the terminal device connected to 'fd'.
+        
+        fd
+          Integer file descriptor handle.
+    
+    uummaasskk(mask, /)
+        Set the current numeric umask and return the previous umask.
+    
+    uunnaammee()
+        Return an object identifying the current operating system.
+        
+        The object behaves like a named tuple with the following fields:
+          (sysname, nodename, release, version, machine)
+    
+    uunnlliinnkk(path, *, dir_fd=None)
+        Remove a file (same as remove()).
+        
+        If dir_fd is not None, it should be a file descriptor open to a directory,
+          and path should be relative; path will then be relative to that directory.
+        dir_fd may not be implemented on your platform.
+          If it is unavailable, using it will raise a NotImplementedError.
+    
+    uunnsseetteennvv(name, /)
+        Delete an environment variable.
+    
+    uurraannddoomm(size, /)
+        Return a bytes object containing random bytes suitable for cryptographic use.
+    
+    uuttiimmee(path, times=None, *, ns=None, dir_fd=None, follow_symlinks=True)
+        Set the access and modified time of path.
+        
+        path may always be specified as a string.
+        On some platforms, path may also be specified as an open file descriptor.
+          If this functionality is unavailable, using it raises an exception.
+        
+        If times is not None, it must be a tuple (atime, mtime);
+            atime and mtime should be expressed as float seconds since the epoch.
+        If ns is specified, it must be a tuple (atime_ns, mtime_ns);
+            atime_ns and mtime_ns should be expressed as integer nanoseconds
+            since the epoch.
+        If times is None and ns is unspecified, utime uses the current time.
+        Specifying tuples for both times and ns is an error.
+        
+        If dir_fd is not None, it should be a file descriptor open to a directory,
+          and path should be relative; path will then be relative to that directory.
+        If follow_symlinks is False, and the last element of the path is a symbolic
+          link, utime will modify the symbolic link itself instead of the file the
+          link points to.
+        It is an error to use dir_fd or follow_symlinks when specifying path
+          as an open file descriptor.
+        dir_fd and follow_symlinks may not be available on your platform.
+          If they are unavailable, using them will raise a NotImplementedError.
+    
+    wwaaiitt()
+        Wait for completion of a child process.
+        
+        Returns a tuple of information about the child process:
+            (pid, status)
+    
+    wwaaiitt33(options)
+        Wait for completion of a child process.
+        
+        Returns a tuple of information about the child process:
+          (pid, status, rusage)
+    
+    wwaaiitt44(pid, options)
+        Wait for completion of a specific child process.
+        
+        Returns a tuple of information about the child process:
+          (pid, status, rusage)
+    
+    wwaaiittiidd(idtype, id, options, /)
+        Returns the result of waiting for a process or processes.
+        
+          idtype
+            Must be one of be P_PID, P_PGID or P_ALL.
+          id
+            The id to wait on.
+          options
+            Constructed from the ORing of one or more of WEXITED, WSTOPPED
+            or WCONTINUED and additionally may be ORed with WNOHANG or WNOWAIT.
+        
+        Returns either waitid_result or None if WNOHANG is specified and there are
+        no children in a waitable state.
+    
+    wwaaiittppiidd(pid, options, /)
+        Wait for completion of a given child process.
+        
+        Returns a tuple of information regarding the child process:
+            (pid, status)
+        
+        The options argument is ignored on Windows.
+    
+    wwaallkk(top, topdown=True, onerror=None, followlinks=False)
+        Directory tree generator.
+        
+        For each directory in the directory tree rooted at top (including top
+        itself, but excluding '.' and '..'), yields a 3-tuple
+        
+            dirpath, dirnames, filenames
+        
+        dirpath is a string, the path to the directory.  dirnames is a list of
+        the names of the subdirectories in dirpath (excluding '.' and '..').
+        filenames is a list of the names of the non-directory files in dirpath.
+        Note that the names in the lists are just names, with no path components.
+        To get a full path (which begins with top) to a file or directory in
+        dirpath, do os.path.join(dirpath, name).
+        
+        If optional arg 'topdown' is true or not specified, the triple for a
+        directory is generated before the triples for any of its subdirectories
+        (directories are generated top down).  If topdown is false, the triple
+        for a directory is generated after the triples for all of its
+        subdirectories (directories are generated bottom up).
+        
+        When topdown is true, the caller can modify the dirnames list in-place
+        (e.g., via del or slice assignment), and walk will only recurse into the
+        subdirectories whose names remain in dirnames; this can be used to prune the
+        search, or to impose a specific order of visiting.  Modifying dirnames when
+        topdown is false is ineffective, since the directories in dirnames have
+        already been generated by the time dirnames itself is generated. No matter
+        the value of topdown, the list of subdirectories is retrieved before the
+        tuples for the directory and its subdirectories are generated.
+        
+        By default errors from the os.scandir() call are ignored.  If
+        optional arg 'onerror' is specified, it should be a function; it
+        will be called with one argument, an OSError instance.  It can
+        report the error to continue with the walk, or raise the exception
+        to abort the walk.  Note that the filename is available as the
+        filename attribute of the exception object.
+        
+        By default, os.walk does not follow symbolic links to subdirectories on
+        systems that support them.  In order to get this functionality, set the
+        optional argument 'followlinks' to true.
+        
+        Caution:  if you pass a relative pathname for top, don't change the
+        current working directory between resumptions of walk.  walk never
+        changes the current directory, and assumes that the client doesn't
+        either.
+        
+        Example:
+        
+        import os
+        from os.path import join, getsize
+        for root, dirs, files in os.walk('python/Lib/email'):
+            print(root, "consumes", end="")
+            print(sum([getsize(join(root, name)) for name in files]), end="")
+            print("bytes in", len(files), "non-directory files")
+            if 'CVS' in dirs:
+                dirs.remove('CVS')  # don't visit CVS directories
+    
+    wwrriittee(fd, data, /)
+        Write a bytes object to a file descriptor.
+    
+    wwrriitteevv(fd, buffers, /)
+        Iterate over buffers, and write the contents of each to a file descriptor.
+        
+        Returns the total number of bytes written.
+        buffers must be a sequence of bytes-like objects.
+
+DDAATTAA
+    CCLLDD__CCOONNTTIINNUUEEDD = 6
+    CCLLDD__DDUUMMPPEEDD = 3
+    CCLLDD__EEXXIITTEEDD = 1
+    CCLLDD__TTRRAAPPPPEEDD = 4
+    EEXX__CCAANNTTCCRREEAATT = 73
+    EEXX__CCOONNFFIIGG = 78
+    EEXX__DDAATTAAEERRRR = 65
+    EEXX__IIOOEERRRR = 74
+    EEXX__NNOOHHOOSSTT = 68
+    EEXX__NNOOIINNPPUUTT = 66
+    EEXX__NNOOPPEERRMM = 77
+    EEXX__NNOOUUSSEERR = 67
+    EEXX__OOKK = 0
+    EEXX__OOSSEERRRR = 71
+    EEXX__OOSSFFIILLEE = 72
+    EEXX__PPRROOTTOOCCOOLL = 76
+    EEXX__SSOOFFTTWWAARREE = 70
+    EEXX__TTEEMMPPFFAAIILL = 75
+    EEXX__UUNNAAVVAAIILLAABBLLEE = 69
+    EEXX__UUSSAAGGEE = 64
+    FF__LLOOCCKK = 1
+    FF__OOKK = 0
+    FF__TTEESSTT = 3
+    FF__TTLLOOCCKK = 2
+    FF__UULLOOCCKK = 0
+    NNGGRROOUUPPSS__MMAAXX = 65536
+    OO__AACCCCMMOODDEE = 3
+    O
